@@ -1,0 +1,4 @@
+resources:
+  - blue.yaml
+  - green.yaml
+  - service.yaml
