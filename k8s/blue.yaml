@@ -14,3 +14,15 @@ spec:
           image: nginx:1.27-alpine
           ports: [{containerPort: 80}]
           readinessProbe: {httpGet: {path: /, port: 80}, initialDelaySeconds: 2}
+          volumeMounts:
+            - {name: content, mountPath: /usr/share/nginx/html, readOnly: true}
+      volumes:
+        - name: content
+          configMap: {name: demo-blue-content}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-blue-content
+data:
+  index.html: 'blue'
